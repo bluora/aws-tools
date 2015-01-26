@@ -1,0 +1,33 @@
+#!/bin/sh
+
+if [ "$(id -u)" != "0" ]; then
+  echo "This script must be run as root" 1>&2
+  exit 1
+fi
+
+if [ -z "$1" ]; then
+  echo "Search name is required"
+  exit 1
+fi
+
+if [ -z "$2" ]; then
+  echo "Command  to be executed is required"
+  exit 1
+fi
+
+if [ -z "$3" ]; then
+  echo "PEM file is required"
+  exit 1
+fi
+
+SERVER_NAME=$1
+REMOTE_COMMAND=$2
+PEM=$3
+
+source aws-get-servers $SERVER_NAME
+
+for item in ${SERVER_LIST[*]}
+do
+  echo "[${item}]"
+  ssh -o StrictHostKeyChecking=no -i $PEM root@${item} "$REMOTE_COMMAND"
+done

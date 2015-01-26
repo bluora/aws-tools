@@ -1,0 +1,10 @@
+[Unit]
+Description=Update Route53 `A` Record with public IP address
+After=network.target
+
+[Service]
+Type=idle
+ExecStart=/bin/aws-update-route53-public-ip
+
+[Install]
+WantedBy=multi-user.target
