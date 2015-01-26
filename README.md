@@ -6,11 +6,13 @@ A number of scripts to help manage AWS services.
 # Installation
 
 Clone the repository to your server:
+
 `sudo git clone https://github.com/bluora/aws-tools.git /usr/local/aws-tools`
 
 Run the ./install.sh script to install packages and create symbolic links.
 
 Configure AWS with a default profile.
+
 `aws configure`
 
 ## Specific install for aws-update-route53
@@ -66,8 +68,10 @@ Add the profile to the AWS configuration
 `aws configure --profile awsdns`
 
 Update the Route53 configuration with your details
+
 `/etc/aws-update-route53.cfg`
-PROFILE_NAME is the AWS profile that you used above.
-ZONE_ID is the Route53 ID for your zone
-DOMAIN is the FQDN that you will store your EC2 server name and public ip.
+
+* PROFILE_NAME is the AWS profile that you used above.
+* ZONE_ID is the Route53 ID for your zone
+* DOMAIN is the FQDN that you will store your EC2 server name and public ip.
 
