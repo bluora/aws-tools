@@ -18,10 +18,14 @@ Configure AWS with a default profile.
 AWS Route53 Updater is a script that will update the record set for the instance in a specific domain zone. For example, we have an EC2 instance `i-55c5489c` that has a public IP. AWS changes an instance's public IP whenever it is stopped, so this script on bootup will update the record with the current public IP. eg i-55c5489c.aws.domainname.com A record 54.66.224.197
 
 Manual commands for SystemD based versions (add it as a starting service)
+
 `sudo cp  /usr/local/aws-tools/service/aws-update-route53.service /usr/lib/systemd/system/aws-update-route53.service`
 
 For rc.local startup
+
 `sudo echo "/usr/bin/aws-update-route53-public-ip" >> /etc/rc.local`
+
+**AWS IAM configuration**
 
 Configure AWS with a specific (restricted) profile for updating Route53 records.
 
@@ -58,6 +62,7 @@ In AWS IAM, add a new user (eg awsdns) with the following security profile:
 ```
 
 Add the profile to the AWS configuration
+
 `aws configure --profile awsdns`
 
 Update the Route53 configuration with your details
