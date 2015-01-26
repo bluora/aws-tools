@@ -1,15 +1,17 @@
 # aws-tools
 AWS Tools
 
-A number of scripts to help manage AWS services.
+A collection of scripts to help manage AWS services:-
 
 * Get Instance Private IP using a tag name
-⋅⋅* `aws-get-instances TagName`
-⋅⋅* Returns array of private IP's
+ * `aws-get-instances TagName`
+ * eg  `aws-get-instances "*-web-*"`
+ * Returns array of private IP's
 * Run a remote command on instances
-⋅⋅* `aws-run-remote-command TagName Command PemFile` 
+ * `aws-run-remote-command TagName Command PemFile` 
+ * eg  `aws-run-remote-command "*-web-*" "service httpd reload" "/root/.ssh/aws.pem"`
 * Update Route53 A Record for the current instance
-⋅⋅* `aws-update-route53-public-ip`
+ * `aws-update-route53-public-ip`
 
 # Installation
 
