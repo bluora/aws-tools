@@ -11,7 +11,7 @@ Clone the repository to your server:
 
 Run the ./install.sh script to install packages and create symbolic links.
 
-Configure AWS with a default profile.
+Configure AWS with a default profile that will restrict/provide access. Some scripts may not work because the profile as been limited.
 
 `aws configure`
 
