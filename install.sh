@@ -19,11 +19,3 @@ sudo ln -s /usr/local/aws-tools/bin/aws-run-remote-command /usr/bin/aws-run-remo
 sudo ln -s /usr/local/aws-tools/bin/aws-update-route53-public-ip /usr/bin/aws-update-route53-public-ip
 
 sudo cp /usr/local/aws-tools/service/aws-update-route53.example.cfg /etc/aws-update-route53.cfg
-
-# Route53 scripts
-
-# Manual commands for SystemD based versions (add it as a starting service)
-# sudo cp  /usr/local/aws-tools/service/aws-update-route53.service /usr/lib/systemd/system/aws-update-route53.service
-
-# For rc.local versions
-# sudo echo "/usr/bin/aws-update-route53-public-ip" >> /etc/rc.local
