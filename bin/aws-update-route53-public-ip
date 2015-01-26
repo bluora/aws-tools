@@ -7,6 +7,21 @@ fi
 
 source /etc/aws-update-route53.cfg
 
+if [ -z "$PROFILE_NAME" ]; then
+  echo "Profile Nme is required"
+  exit 1
+fi
+
+if [ -z "$ZONE_ID" ]; then
+  echo "Zone ID is required"
+  exit 1
+fi
+
+if [ -z "$DOMAIN" ]; then
+  echo "Domain Name (FQDN) is required"
+  exit 1
+fi
+
 PUBLIC_IP=`ec2-metadata -v | gawk '{print $2}'`
 INSTANCE_NAME=`ec2-metadata -i | gawk '{print $2}'`
 INPUT_JSON="{\"ChangeBatch\":{\"Changes\":[{\"Action\":\"UPSERT\",\"ResourceRecordSet\":{\"Name\": \"$INSTANCE_NAME.$DOMAIN\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"$PUBLIC_IP\"}]}}]}}"
