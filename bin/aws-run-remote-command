@@ -20,11 +20,14 @@ if [ -z "$3" ]; then
   exit 1
 fi
 
-SERVER_NAME=$1
+INSTANCE_TAG_NAME=$1
 REMOTE_COMMAND=$2
 PEM=$3
 
-source aws-get-instances $SERVER_NAME
+. aws-get-instances $INSTANCE_TAG_NAME
+
+echo "Run Command: $REMOTE_COMMAND"
+echo "PEM: $PEM"
 
 for item in ${SERVER_LIST[*]}
 do
