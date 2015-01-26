@@ -14,7 +14,7 @@ fi
 cd /usr/local/src/ && sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" && sudo unzip awscli-bundle.zip && sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/bin/aws
 cd /usr/local/src/ && sudo wget -q http://s3.amazonaws.com/ec2metadata/ec2-metadata && sudo chmod +x ec2-metadata && sudo mv ec2-metadata /usr/bin
 
-sudo ln -s /usr/local/aws-tools/bin/aws-get-servers /usr/bin/aws-get-servers
+sudo ln -s /usr/local/aws-tools/bin/aws-get-instances /usr/bin/aws-get-instances
 sudo ln -s /usr/local/aws-tools/bin/aws-run-remote-command /usr/bin/aws-run-remote-command
 sudo ln -s /usr/local/aws-tools/bin/aws-update-route53-public-ip /usr/bin/aws-update-route53-public-ip
 

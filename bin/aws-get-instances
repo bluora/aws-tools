@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+  echo "Search name is required"
+  exit 1
+fi
+
+SERVER_NAME=$1
+
+read -a SERVER_LIST <<<$(aws ec2 describe-instances --filters 'Name=tag:Name,Values=$SERVER_NAME' --query 'Reservations[*].Instances[*].NetworkInterfaces[*].PrivateIpAddresses[*].PrivateIpAddress' --output text)

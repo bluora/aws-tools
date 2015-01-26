@@ -24,7 +24,7 @@ SERVER_NAME=$1
 REMOTE_COMMAND=$2
 PEM=$3
 
-source aws-get-servers $SERVER_NAME
+source aws-get-instances $SERVER_NAME
 
 for item in ${SERVER_LIST[*]}
 do
