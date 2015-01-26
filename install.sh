@@ -1,10 +1,5 @@
 #!/bin/sh
 
-if [ -z "$1" ]; then
-  echo "Search name is required"
-  exit 1
-fi
-
 if command -v apt-get >/dev/null 2>&1; then
 	sudo apt-get install git unzip wget curl gawk
 else
