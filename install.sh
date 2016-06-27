@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if command -v apt-get >/dev/null 2>&1; then
-	sudo apt-get install git unzip wget curl gawk
+	sudo apt-get install git unzip wget curl gawk -y
 else
 	sudo yum install git unzip wget curl -y
 fi
