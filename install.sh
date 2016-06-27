@@ -15,10 +15,14 @@ command -v aws >/dev/null 2>&1 || {
 }
 
 command -v ec2-metadata >/dev/null 2>&1 || {
-    cd /usr/local/src/
-    sudo wget -q http://s3.amazonaws.com/ec2metadata/ec2-metadata
-    sudo chmod +x ec2-metadata
-    sudo mv ec2-metadata /usr/bin
+    if [ -f ec2metadata ]
+        sudo ln -s /usr/bin/ec2metadata /usr/bin/ec2-metadata
+    then
+        cd /usr/local/src/
+        sudo wget -q http://s3.amazonaws.com/ec2metadata/ec2-metadata
+        sudo chmod +x ec2-metadata
+        sudo mv ec2-metadata /usr/bin
+    fi
     exit 0;
 }
 
