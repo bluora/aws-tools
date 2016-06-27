@@ -30,4 +30,4 @@ command -v ec2-metadata >/dev/null 2>&1 || {
 [ ! -f /usr/bin/aws-run-remote-command ] && sudo ln -s /usr/local/aws-tools/bin/aws-run-remote-command /usr/bin/aws-run-remote-command
 [ ! -f /usr/bin/aws-update-route53-public-ip ] && sudo ln -s /usr/local/aws-tools/bin/aws-update-route53-public-ip /usr/bin/aws-update-route53-public-ip
 
-[ ! -f /etc/aws-update-route53.cfg ] && sudo cp /usr/local/aws-tools/service/aws-update-route53.example.cfg /etc/aws-update-route53.cfg
+[ ! -f /etc/aws-update-route53.cfg ] && sudo cp /usr/local/aws-tools/service/aws-update-route53-public-ip.example.cfg /etc/aws-update-route53-public-ip.cfg
