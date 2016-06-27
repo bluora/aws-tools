@@ -84,17 +84,27 @@ AWS Route53 Updater is a script that will update the record set for the instance
 ### Update the Route53 configuration with your details
 
 ```
-# sudo vi /etc/aws-update-route53.cfg
+# sudo vi /etc/aws-update-route53-public-ip.cfg
 
 #!/bin/sh
 
 AWS_ROUTE53_PROFILE_NAME="<<<PROFILENAME>>>"
-AWS_ROUTE53_ZONE_ID="<<<HOSTEDZONEID>>>"
+AWS_ROUTE53_ZONE_ID="<<<HOSTEDZONEID_1>>>"
+AWS_ROUTE53_DOMAIN="<<<DOMAINNAME>>>"
+```
+
+```
+# sudo vi /etc/aws-update-route53-prviate-ip.cfg
+
+#!/bin/sh
+
+AWS_ROUTE53_PROFILE_NAME="<<<PROFILENAME>>>"
+AWS_ROUTE53_ZONE_ID="<<<HOSTEDZONEID_1>>>"
 AWS_ROUTE53_DOMAIN="<<<DOMAINNAME>>>"
 ```
 
 PROFILENAME is the AWS profile that you used above (eg awsnds)
-HOSTEDZONEID is the Route53 ID for your zone
+HOSTEDZONEID_1/HOSTEDZONEID_2 is the Route53 ID for your zone
 DOMAINNAME is the FQDN (eg aws.example.com.) that you will store your EC2 server name and public ip.
 
 ### SYSTEMD
@@ -111,7 +121,7 @@ For rc.local startup
 
 ** Redhat / CentOS 6 **
 ```
-sudo echo "/usr/bin/aws-update-route53-public-ip" >> /etc/rc.local
+sudo echo "/usr/bin/aws-update-route53-ip" >> /etc/rc.local
 ```
 
 ** Debian / Ubuntu **
@@ -130,7 +140,7 @@ sudo echo "/usr/bin/aws-update-route53-public-ip" >> /etc/rc.local
 #
 
 # Update the IP for this instance
-/usr/bin/aws-update-route53-public-ip
+/usr/bin/aws-update-route53-ip
 exit 0
 ```
 

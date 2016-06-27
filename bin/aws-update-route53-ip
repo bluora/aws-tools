@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/bin/aws-update-route53-public-ip
+/bin/aws-update-route53-private-ip

@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=idle
-ExecStart=/bin/aws-update-route53-public-ip
+ExecStart=/bin/aws-update-route53-ip
 
 [Install]
 WantedBy=multi-user.target
