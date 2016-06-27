@@ -23,27 +23,18 @@ Run the ./install.sh script to install packages and create symbolic links.
 
 Configure AWS with a default profile that will restrict/provide access. Some scripts may not work because the profile has been limited.
 
-`aws configure`
+## AWS IAM configuration
 
-## Specific install for aws-update-route53
+You will need to add a user (eg awsdns) and apply a limited access policy. 
 
-AWS Route53 Updater is a script that will update the record set for the instance in a specific domain zone. For example, we have an EC2 instance `i-55c5489c` that has a public IP. AWS changes an instance's public IP whenever it is stopped, so this script on bootup will update the record with the current public IP. eg i-55c5489c.aws.domainname.com A record 54.66.224.197
+** Access Key ID
+Found on the Security Credentials tab when viewing the user.
 
-Manual commands for SystemD based versions (add it as a starting service)
+** Assign a password
+Attach a password.
 
-`sudo cp  /usr/local/aws-tools/service/aws-update-route53.service /usr/lib/systemd/system/aws-update-route53.service`
-
-For rc.local startup
-
-`sudo echo "/usr/bin/aws-update-route53-public-ip" >> /etc/rc.local`
-
-**AWS IAM configuration**
-
-Configure AWS with a specific (restricted) profile for updating Route53 records.
-
-In AWS IAM, add a new user (eg awsdns) with the following security profile:
-
-(change domainname and domainzoneid to your details)
+** Policy
+You will need add your hostedzone ID into the placeholder <<<HOSTEDZONEID>>>.
 
 ```
 {
@@ -57,7 +48,7 @@ In AWS IAM, add a new user (eg awsdns) with the following security profile:
         "route53:ListResourceRecordSets"
       ],
       "Resource": [
-        "arn:aws:route53:::dominaname/domainzoneid"
+        "arn:aws:route53:::hostedzone/<<<HOSTEDZONEID>>>"
       ]
     },
     {
@@ -73,15 +64,47 @@ In AWS IAM, add a new user (eg awsdns) with the following security profile:
 }
 ```
 
-Add the profile to the AWS configuration
+```
+# aws configure --profile awsdns
 
-`aws configure --profile awsdns`
+AWS Access Key ID [None]: <<<Access Key ID>>>
+AWS Secret Access Key [None]: <<<Secret Access Key>>>
+Default region name [None]: (leave empty)
+Default output format [None]:  (leave empty)
 
-Update the Route53 configuration with your details
+```
 
-`/etc/aws-update-route53.cfg`
+## Specific install for aws-update-route53
 
-* PROFILE_NAME is the AWS profile that you used above.
-* ZONE_ID is the Route53 ID for your zone
-* DOMAIN is the FQDN that you will store your EC2 server name and public ip.
+AWS Route53 Updater is a script that will update the record set for the instance in a specific domain zone. For example, we have an EC2 instance `i-55c5489c` that has a public IP. AWS changes an instance's public IP whenever it is stopped, so this script on bootup will update the record with the current public IP. eg i-55c5489c.aws.example.com A record 54.66.224.197
+
+### Update the Route53 configuration with your details
+
+```
+# sudo vi /etc/aws-update-route53.cfg
+
+#!/bin/sh
+
+PROFILE_NAME="<<<PROFILENAME>>>"
+ZONE_ID="<<<HOSTEDZONEID>>>"
+DOMAIN="<<<DOMAINNAME>>>"
+```
+
+PROFILENAME is the AWS profile that you used above (eg awsnds)
+HOSTEDZONEID is the Route53 ID for your zone
+DOMAINNAME is the FQDN (eg aws.example.com.) that you will store your EC2 server name and public ip.
+
+### SYSTEMD (CentOS 7)
+Manual commands for SystemD based versions (add it as a starting service)
+
+```
+sudo cp  /usr/local/aws-tools/service/aws-update-route53.service /usr/lib/systemd/system/aws-update-route53.service
+```
+
+### RC.LOCAL
+For rc.local startup
+
+```
+sudo echo "/usr/bin/aws-update-route53-public-ip" >> /etc/rc.local
+```
 
