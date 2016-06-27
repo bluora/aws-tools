@@ -26,6 +26,8 @@ command -v ec2-metadata >/dev/null 2>&1 || {
     exit 0;
 }
 
+[ ! -f /usr/local/aws-tools/install.sh ] && sudo mv ./aws-tools /usr/local/aws-tools/
+
 [ ! -f /usr/bin/aws-get-instances ] && sudo ln -s /usr/local/aws-tools/bin/aws-get-instances /usr/bin/aws-get-instances
 [ ! -f /usr/bin/aws-run-remote-command ] && sudo ln -s /usr/local/aws-tools/bin/aws-run-remote-command /usr/bin/aws-run-remote-command
 [ ! -f /usr/bin/aws-update-route53-ip ] && sudo ln -s /usr/local/aws-tools/bin/aws-update-route53-ip /usr/bin/aws-update-route53-ip
