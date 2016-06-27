@@ -17,11 +17,11 @@ A collection of scripts to help manage AWS services:-
 
 Clone the repository to your server:
 
-`sudo git clone https://github.com/bluora/aws-tools.git /usr/local/aws-tools`
+`sudo git clone https://github.com/bluora/aws-tools.git /usr/local/aws-tools && /usr/local/aws-tools/install.sh`
 
 Run the ./install.sh script to install packages and create symbolic links.
 
-Configure AWS with a default profile that will restrict/provide access. Some scripts may not work because the profile as been limited.
+Configure AWS with a default profile that will restrict/provide access. Some scripts may not work because the profile has been limited.
 
 `aws configure`
 
