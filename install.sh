@@ -29,5 +29,7 @@ command -v ec2-metadata >/dev/null 2>&1 || {
 [ ! -f /usr/bin/aws-get-instances ] && sudo ln -s /usr/local/aws-tools/bin/aws-get-instances /usr/bin/aws-get-instances
 [ ! -f /usr/bin/aws-run-remote-command ] && sudo ln -s /usr/local/aws-tools/bin/aws-run-remote-command /usr/bin/aws-run-remote-command
 [ ! -f /usr/bin/aws-update-route53-public-ip ] && sudo ln -s /usr/local/aws-tools/bin/aws-update-route53-public-ip /usr/bin/aws-update-route53-public-ip
+[ ! -f /usr/bin/aws-update-route53-private-ip ] && sudo ln -s /usr/local/aws-tools/bin/aws-update-route53-private-ip /usr/bin/aws-update-route53-private-ip
 
-[ ! -f /etc/aws-update-route53.cfg ] && sudo cp /usr/local/aws-tools/service/aws-update-route53-public-ip.example.cfg /etc/aws-update-route53-public-ip.cfg
+[ ! -f /etc/aws-update-route53-public-ip.cfg ] && sudo cp /usr/local/aws-tools/service/aws-update-route53-public-ip.example.cfg /etc/aws-update-route53-public-ip.cfg
+[ ! -f /etc/aws-update-route53-private-ip.cfg ] && sudo cp /usr/local/aws-tools/service/aws-update-route53-private-ip.example.cfg /etc/aws-update-route53-private-ip.cfg
