@@ -24,9 +24,9 @@ fi
 
 PRIVATE_IP=`ip route get 8.8.8.8 | awk '{print $NF; exit}'`
 INSTANCE_NAME=`ec2-metadata -i | gawk '{print $2}'`
-INPUT_JSON="{\"ChangeBatch\":{\"Changes\":[{\"Action\":\"UPSERT\",\"ResourceRecordSet\":{\"Name\": \"$INSTANCE_NAME-private.$AWS_ROUTE53_DOMAIN\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"$PRIVATE_IP\"}]}}]}}"
+INPUT_JSON="{\"ChangeBatch\":{\"Changes\":[{\"Action\":\"UPSERT\",\"ResourceRecordSet\":{\"Name\": \"$INSTANCE_NAME.$AWS_ROUTE53_DOMAIN\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"$PRIVATE_IP\"}]}}]}}"
 
-echo "$INSTANCE_NAME-private.$AWS_ROUTE53_DOMAIN >>> $PRIVATE_IP"
+echo "$INSTANCE_NAME.$AWS_ROUTE53_DOMAIN >>> $PRIVATE_IP"
 aws route53 change-resource-record-sets --hosted-zone-id $AWS_ROUTE53_ZONE_ID --profile $AWS_ROUTE53_PROFILE_NAME --cli-input-json "$INPUT_JSON"
 
 exit 0

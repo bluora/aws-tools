@@ -34,7 +34,9 @@ Found on the Security Credentials tab when viewing the user.
 Use the secret access key found when this user was created.
 
 ** Policy  **
-You will need add your hostedzone ID into the placeholder <<<HOSTEDZONEID>>>.
+You will need add your hostedzone ID into the placeholder <<<HOSTEDZONEID_1>>> and <<<HOSTEDZONEID_2>>>.
+
+One would be your public DNS and the other your private DNS.
 
 ```
 {
@@ -48,6 +50,7 @@ You will need add your hostedzone ID into the placeholder <<<HOSTEDZONEID>>>.
         "route53:ListResourceRecordSets"
       ],
       "Resource": [
+        "arn:aws:route53:::hostedzone/<<<HOSTEDZONEID>>>",
         "arn:aws:route53:::hostedzone/<<<HOSTEDZONEID>>>"
       ]
     },
