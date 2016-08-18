@@ -23,7 +23,7 @@ if [ -z "$AWS_ROUTE53_DOMAIN" ]; then
 fi
 
 PRIVATE_IP=`ip route get 8.8.8.8 | awk '{print $NF; exit}'`
-INSTANCE_NAME=`ec2-metadata -i | gawk '{print $2}'`
+INSTANCE_NAME=`ec2-metadata --instance-id | gawk '{print $2}'`
 INPUT_JSON="{\"ChangeBatch\":{\"Changes\":[{\"Action\":\"UPSERT\",\"ResourceRecordSet\":{\"Name\": \"$INSTANCE_NAME.$AWS_ROUTE53_DOMAIN\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"$PRIVATE_IP\"}]}}]}}"
 
 echo "$INSTANCE_NAME.$AWS_ROUTE53_DOMAIN >>> $PRIVATE_IP"
