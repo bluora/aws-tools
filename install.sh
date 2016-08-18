@@ -11,7 +11,6 @@ command -v aws >/dev/null 2>&1 || {
     sudo curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
     sudo unzip awscli-bundle.zip
     sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/bin/aws
-    exit 0;
 }
 
 command -v ec2-metadata >/dev/null 2>&1 || {
@@ -23,7 +22,6 @@ command -v ec2-metadata >/dev/null 2>&1 || {
         sudo chmod +x ec2-metadata
         sudo mv ec2-metadata /usr/bin
     fi
-    exit 0;
 }
 
 [ ! -f /usr/local/aws-tools/install.sh ] && sudo mv ./aws-tools /usr/local/aws-tools/
