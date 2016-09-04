@@ -24,7 +24,7 @@ command -v ec2-metadata >/dev/null 2>&1 || {
     fi
 }
 
-[ ! -f /usr/local/aws-tools/install.sh ] && sudo mv ./aws-tools /usr/local/aws-tools/
+[ ! -f /usr/local/aws-tools/install.sh ] && sudo mv ./aws-tools/ /usr/local/aws-tools/
 
 [ ! -f /usr/bin/aws-get-instances ] && sudo ln -s /usr/local/aws-tools/bin/aws-get-instances /usr/bin/aws-get-instances
 [ ! -f /usr/bin/aws-run-remote-command ] && sudo ln -s /usr/local/aws-tools/bin/aws-run-remote-command /usr/bin/aws-run-remote-command
