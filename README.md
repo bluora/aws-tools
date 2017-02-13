@@ -68,7 +68,7 @@ One would be your public DNS and the other your private DNS.
 ```
 
 ```
-# aws configure --profile awsdns
+$ aws configure --profile awsdns
 
 AWS Access Key ID [None]: <<<Access Key ID>>>
 AWS Secret Access Key [None]: <<<Secret Access Key>>>
@@ -84,7 +84,7 @@ AWS Route53 Updater is a script that will update the record set for the instance
 ### Update the Route53 configuration with your details
 
 ```
-# sudo vi /etc/aws-update-route53-public-ip.cfg
+$ sudo vi /etc/aws-update-route53-public-ip.cfg
 
 #!/bin/sh
 
@@ -94,7 +94,7 @@ AWS_ROUTE53_DOMAIN="<<<DOMAINNAME>>>"
 ```
 
 ```
-# sudo vi /etc/aws-update-route53-prviate-ip.cfg
+$ sudo vi /etc/aws-update-route53-prviate-ip.cfg
 
 #!/bin/sh
 
@@ -113,7 +113,7 @@ DOMAINNAME is the FQDN (eg aws.example.com.) that you will store your EC2 server
 Manual commands for SystemD based versions (add it as a starting service)
 
 ```
-sudo cp  /usr/local/aws-tools/service/aws-update-route53.service /usr/lib/systemd/system/aws-update-route53.service
+$ sudo cp  /usr/local/aws-tools/service/aws-update-route53.service /usr/lib/systemd/system/aws-update-route53.service
 ```
 
 ### RC.LOCAL
@@ -126,7 +126,7 @@ sudo echo "/usr/bin/aws-update-route53-ip" >> /etc/rc.local
 
 ** Debian / Ubuntu **
 ```
-# sudo vi /etc/rc.local
+$ sudo vi /etc/rc.local
 #!/bin/sh -e
 #
 # rc.local
