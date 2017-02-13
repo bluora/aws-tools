@@ -127,7 +127,7 @@ $ sudo echo "/usr/bin/aws-update-route53-ip" >> /etc/rc.local
 ** Debian / Ubuntu **
 
 ````
-$ sudo systemctl enable rc-local.service
+$ sudo sed -i "1s/.*/\#\!\/bin\/bash/" /etc/rc.local
 $ sudo vi /etc/rc.local
 #!/bin/sh -e
 #
