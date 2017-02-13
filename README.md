@@ -94,7 +94,7 @@ AWS_ROUTE53_DOMAIN="<<<DOMAINNAME>>>"
 ```
 
 ```
-$ sudo vi /etc/aws-update-route53-prviate-ip.cfg
+$ sudo vi /etc/aws-update-route53-private-ip.cfg
 
 #!/bin/sh
 
