@@ -121,11 +121,13 @@ For rc.local startup
 
 ** Redhat / CentOS 6 **
 ```
-sudo echo "/usr/bin/aws-update-route53-ip" >> /etc/rc.local
+$ sudo echo "/usr/bin/aws-update-route53-ip" >> /etc/rc.local
 ```
 
 ** Debian / Ubuntu **
-```
+
+````
+$ sudo systemctl enable rc-local.service
 $ sudo vi /etc/rc.local
 #!/bin/sh -e
 #
