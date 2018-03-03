@@ -27,13 +27,13 @@ Configure AWS with a default profile that will restrict/provide access. Some scr
 
 You will need to add a user (eg awsdns) and apply a limited access policy. 
 
-** Access Key ID **
+### Access Key ID
 Found on the Security Credentials tab when viewing the user.
 
-** AWS Secret Access Key **
+### AWS Secret Access Key
 Use the secret access key found when this user was created.
 
-** Policy  **
+### Policy
 You will need add your hostedzone ID into the placeholder <<<HOSTEDZONEID_1>>> and <<<HOSTEDZONEID_2>>>.
 
 One would be your public DNS and the other your private DNS.
@@ -103,13 +103,13 @@ AWS_ROUTE53_ZONE_ID="<<<HOSTEDZONEID_1>>>"
 AWS_ROUTE53_DOMAIN="<<<DOMAINNAME>>>"
 ```
 
-PROFILENAME is the AWS profile that you used above (eg awsnds)
-HOSTEDZONEID_1/HOSTEDZONEID_2 is the Route53 ID for your zone
-DOMAINNAME is the FQDN (eg aws.example.com.) that you will store your EC2 server name and public ip.
+* PROFILENAME is the AWS user that created and set the access policy above (eg awsdns)
+* HOSTEDZONEID_1/HOSTEDZONEID_2 is the Route53 ID for your zone
+* DOMAINNAME is the FQDN (eg aws.example.com.) that you will store your EC2 server name and public ip.
 
 ### SYSTEMD
 
-** CentOS 7 **
+#### CentOS 7
 Manual commands for SystemD based versions (add it as a starting service)
 
 ```
@@ -119,16 +119,19 @@ $ sudo cp  /usr/local/aws-tools/service/aws-update-route53.service /usr/lib/syst
 ### RC.LOCAL
 For rc.local startup
 
-** Redhat / CentOS 6 **
+#### Redhat / CentOS 6
 ```
 $ sudo echo "/usr/bin/aws-update-route53-ip" >> /etc/rc.local
 ```
 
-** Debian / Ubuntu **
+#### Debian / Ubuntu
 
-````
+```
 $ sudo sed -i "1s/.*/\#\!\/bin\/bash/" /etc/rc.local
 $ sudo vi /etc/rc.local
+```
+
+```
 #!/bin/sh -e
 #
 # rc.local
